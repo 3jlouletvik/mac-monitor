@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# virtual environments
+venv/
+.venv/
+.venv-build/
+
+# build results
+build/
+dist/
+
+# macOS / editors
+.DS_Store
+.vscode/
