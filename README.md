@@ -26,7 +26,11 @@ Two ways, the same program:
 
 ### Option A: the app (no Python needed)
 
-1. Download `MacMonitor.zip` from the [Releases](../../releases) page and unzip it.
+1. Download the zip for **your** Mac from the [Releases](../../releases) page and unzip it:
+   - `MacMonitor-apple-silicon.zip`: Macs with an Apple chip (M1, M2, M3 and newer)
+   - `MacMonitor-intel.zip`: Macs with an Intel processor
+
+   Not sure which one you have? Click  → *About This Mac*: it says **Chip** (Apple) or **Processor** (Intel).
 2. Drag **Mac Monitor.app** to your **Applications** folder and open it.
 
 The app is not signed with a paid Apple Developer certificate, so macOS blocks it on the first launch:
@@ -54,7 +58,7 @@ python mac_monitor.py
 bash build_app.sh
 ```
 
-The result is `dist/Mac Monitor.app` and `dist/MacMonitor.zip`. The same build runs on GitHub Actions: push a tag like `v2.1.0` and the zip is attached to a Release automatically.
+The app is built for the processor of the Mac you run this on. The result is `dist/Mac Monitor.app` and `dist/MacMonitor-apple-silicon.zip` (or `dist/MacMonitor-intel.zip`). The same build runs on GitHub Actions for both processor types: push a tag like `v2.1.1` and both zips are attached to a Release automatically.
 
 ## ⚙️ Settings
 
@@ -73,6 +77,7 @@ A wrong or missing value is simply ignored and the default is used.
 
 ## 🩺 Troubleshooting
 
+- **"Launch error" when opening the app:** you downloaded the zip for the other processor type. Download the other one (see Install → Option A).
 - **No notifications:** open *System Settings → Notifications* and allow them for **Script Editor** (macOS sends them through it).
 - **Something is wrong:** look at `~/Library/Logs/MacMonitor.log` and attach it to your issue.
 - **No temperature or fan speed:** macOS does not give this to regular apps without admin rights or extra tools.

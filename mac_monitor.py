@@ -18,7 +18,7 @@ from collections import deque
 import psutil
 import rumps
 
-VERSION = "2.1.0"
+VERSION = "2.1.1"
 
 # ---------- PATHS ----------
 LABEL = "local.macmonitor"   # name of the autostart job

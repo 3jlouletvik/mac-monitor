@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+- Separate app builds for Apple Silicon (M1 and newer) and Intel Macs: `MacMonitor-apple-silicon.zip` and `MacMonitor-intel.zip`
+  (the single build in 2.1.0 was Apple Silicon only and showed "Launch error" on Intel Macs)
+
 ## 2.1.0
 - Settings file `config.json` (thresholds, cooldowns, language)
 - English and Russian interface (picked automatically)

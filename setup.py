@@ -10,8 +10,8 @@ OPTIONS = {
         "CFBundleName": "Mac Monitor",
         "CFBundleDisplayName": "Mac Monitor",
         "CFBundleIdentifier": "io.github.3jlouletvik.macmonitor",
-        "CFBundleVersion": "2.1.0",
-        "CFBundleShortVersionString": "2.1.0",
+        "CFBundleVersion": "2.1.1",
+        "CFBundleShortVersionString": "2.1.1",
         "LSUIElement": True,   # menu bar only, no Dock icon
     },
 }

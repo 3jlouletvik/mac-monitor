@@ -2,7 +2,7 @@ name: Build macOS app
 
 on:
   push:
-    tags: ["v*"]          # runs when you push a tag like v2.1.0
+    tags: ["v*"]          # runs when you push a tag like v2.1.1
   workflow_dispatch:       # and manually from the Actions tab
 
 permissions:
@@ -10,7 +10,15 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-latest
+    name: build (${{ matrix.arch }})
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest      # Apple Silicon Macs (M1 and newer)
+            arch: apple-silicon
+          - os: macos-15-intel    # Intel Macs
+            arch: intel
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
@@ -24,11 +32,22 @@ jobs:
       - name: Keep the zip as a build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: MacMonitor
-          path: dist/MacMonitor.zip
+          name: MacMonitor-${{ matrix.arch }}
+          path: dist/MacMonitor-*.zip
 
-      - name: Attach the zip to the GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect both zips
+        uses: actions/download-artifact@v4
+        with:
+          pattern: MacMonitor-*
+          path: dist
+          merge-multiple: true
+
+      - name: Attach the zips to the GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/MacMonitor.zip
+          files: dist/*.zip
